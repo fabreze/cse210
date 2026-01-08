@@ -14,7 +14,7 @@ class Program
         if(gradePercentage >= 90)
         {
             passed = true;
-            if (lastDigit < 3)
+            if (lastDigit < 3 && gradePercentage != 100)
             {
                 letterGrade = "A-";
             }
@@ -77,11 +77,11 @@ class Program
 
         if (passed)
         {
-            Console.WriteLine($"You got an {letterGrade}! Congratulations you passed!");
+            Console.WriteLine($"Your grade is: {letterGrade}! Congratulations you passed!");
         }
         else
         {
-            Console.WriteLine($"You got an {letterGrade}. You didn't pass, you should study harder.");
+            Console.WriteLine($"Your grade is: {letterGrade}. You didn't pass, you should study harder.");
         }
     }
 }
