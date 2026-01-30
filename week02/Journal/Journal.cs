@@ -7,21 +7,21 @@ public class Journal()
     public void AddEntry(Entry newEntry)
     {
         _entries.Add(newEntry);
-    } 
+    }
     public void DisplayAll()
     {
-        foreach(Entry entry in _entries)
+        foreach (Entry entry in _entries)
         {
             entry.Display();
         }
     }
     public void SaveToFile(string file)
     {
-        using (FileStream outputFile = new FileStream(file,FileMode.OpenOrCreate, FileAccess.Write))
+        using (FileStream outputFile = new FileStream(file, FileMode.Open, FileAccess.Write))
         {
             using (StreamWriter sw = new StreamWriter(outputFile))
             {
-                foreach(Entry entry in _entries)
+                foreach (Entry entry in _entries)
                 {
                     DateTime day = DateTime.Today;
                     entry._date = day.ToShortDateString();
@@ -29,7 +29,7 @@ public class Journal()
                     sw.WriteLine($"Date: {entry._date} - Prompt: {entry._promptText}");
                     sw.WriteLine($"{entry._entryText}");
                     sw.WriteLine("------------------------------------------------------------------------------------------------------------");
-                }   
+                }
             }
         }
     }
@@ -39,18 +39,18 @@ public class Journal()
         {
             string[] lines = System.IO.File.ReadAllLines(file);
 
-            using (StreamWriter inputFile =  new StreamWriter(file, true))
+            using (StreamWriter inputFile = new StreamWriter(file, true))
             {
-                foreach(string line in lines)
+                foreach (string line in lines)
                 {
                     Console.WriteLine(line);
                 }
             }
         }
-        catch(Exception e)
+        catch (Exception e)
         {
             Console.WriteLine(e.Message);
         }
-        
+
     }
 }

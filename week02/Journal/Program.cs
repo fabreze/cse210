@@ -4,8 +4,12 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Welcome to the Journal Program!");
+
+        string relativePath = "\\Journal.txt";
+        string fullPath = Path.GetFullPath(Environment.CurrentDirectory + relativePath);
         bool isRunning = true;
+
+        Console.WriteLine("Welcome to the Journal Program!");
         Journal journal = new Journal();
         do
         {
@@ -46,10 +50,10 @@ class Program
                     journal.DisplayAll();
                     break;
                 case 3:
-                    journal.LoadFromFile("Journal.txt");
+                    journal.LoadFromFile(fullPath);
                     break;
                 case 4:
-                    journal.SaveToFile("Journal.txt");
+                    journal.SaveToFile(fullPath);
                     break;
                 case 5:
                     isRunning = false;
@@ -60,6 +64,6 @@ class Program
                     break;
             }
         }
-        while(isRunning);
+        while (isRunning);
     }
 }
