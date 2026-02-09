@@ -1,8 +1,8 @@
 public class Activity
 {
-    private string _name;
-    private string _description;
-    private int _duration;
+    protected string _name;
+    protected string _description;
+    protected int _duration;
     public Activity()
     {
         _name = "";
@@ -12,12 +12,13 @@ public class Activity
 
     public void DisplayStartingMessage()
     {
-
+        Console.WriteLine($"Welcome to the {_name}.");
+        Console.WriteLine($"\n{_description}");
     }
 
     public void DisplayEndingMessage()
     {
-
+        Console.WriteLine($"You have completed another {_duration} seconds of the {_name}");
     }
     public void ShowSpinner(int seconds)
     {
@@ -44,13 +45,21 @@ public class Activity
                 i = 0;
             }
         }
-
-        Console.WriteLine("Done!");
     }
 
     public void ShowCountDown(int seconds)
     {
+        DateTime startTime = DateTime.Now;
+        DateTime futureTime = startTime.AddSeconds(seconds);
 
+        int i = seconds;
+        while (DateTime.Now < futureTime)
+        {
+            Console.Write(i);
+            Thread.Sleep(1000);
+            Console.Write("\b \b");
+            i--;
+        }
     }
 
 }
